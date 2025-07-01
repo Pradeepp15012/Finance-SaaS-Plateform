@@ -12,18 +12,18 @@ import {
     
 } from "@/components/ui/sheet";
 
-const formSchema = insertAccountSchema.pick({
-    name: true,
-});
-
-type FormValues = z.input<typeof formSchema>
-
-
-// const formSchema = z.object({
-//   name: z.string(),
+// const formSchema = insertAccountSchema.pick({
+//     name: true,
 // });
 
-// type FormValues = z.infer<typeof formSchema>;
+// type FormValues = z.input<typeof formSchema>
+
+
+const formSchema = z.object({
+  name: z.string(),
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 export const NewAccountSheet = () => {
 

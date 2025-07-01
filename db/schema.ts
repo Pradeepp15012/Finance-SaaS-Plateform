@@ -1,6 +1,6 @@
 import {createInsertSchema} from "drizzle-zod"
 import { pgTable, text } from "drizzle-orm/pg-core";
-// import { createId } from "@paralleldrive/cuid2";
+import { createId } from "@paralleldrive/cuid2";
 
 export const accounts = pgTable("accounts", {
     id: text("id").primaryKey(),

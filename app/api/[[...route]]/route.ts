@@ -1,6 +1,5 @@
 import { Hono } from "hono";
 import { handle } from "hono/vercel";
-// import { HTTPException } from "hono/http-exception";
 
 import accounts from "./accounts";
 

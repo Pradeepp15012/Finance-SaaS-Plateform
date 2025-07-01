@@ -16,18 +16,17 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 
-const formSchema = insertAccountSchema.pick({
-    name: true,
-});
-
-type FormValues = z.input<typeof formSchema>;
-
-
-// const formSchema = z.object({
-//   name: z.string(),
+// const formSchema = insertAccountSchema.pick({
+//     name: true,
 // });
 
-// type FormValues = z.infer<typeof formSchema>;
+// type FormValues = z.input<typeof formSchema>;
+
+const formSchema = z.object({
+  name: z.string(),
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 type Props = {
     id?: string;
@@ -58,46 +57,45 @@ export const AccountForm = ({
     }
 
     return (
-        <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(handleSubmit)}
-                className="space-y-4 pt-4"
-            >
-                <FormField
-                    name="name"
-                    control={form.control}
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>
-                                Name
-                            </FormLabel>
-                            <FormControl>
-                                <Input
-                                    disabled={disabled}
-                                    placeholder="e.g. Cash, Bank, Credit Card"
-                                    {...field}
-                                />
-                            </FormControl>
-                        </FormItem>
-                    )}
-                />
-
-                <Button className="w-full" disabled={disabled}>
-                    {id ? "Save changes" : "Create account"}
-                </Button>
-                {!!id && (
-                  <Button
-                    type="button"
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(handleSubmit)}
+          className="space-y-4 pt-4"
+        >
+          <FormField
+            name="name"
+            control={form.control}
+            render={({ }) => (
+              <FormItem>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input
                     disabled={disabled}
-                    onClick={handleDelete}
-                    className="w-full"
-                    variant="outline"
-                  >
-                    <Trash className="size-4 mr-2" />
-                    Delete account
-                  </Button>
-                )}
-            </form>
-        </Form >
-    )
+                    placeholder="e.g. Cash, Bank, Credit Card"
+                    
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button className="w-full" disabled={disabled}>
+            {id ? "Save changes" : "Create account"}
+          </Button>
+          {!!id && (
+            <Button
+              type="button"
+              disabled={disabled}
+              onClick={handleDelete}
+              className="w-full"
+              variant="outline"
+            >
+              <Trash className="size-4 mr-2" />
+              Delete account
+            </Button>
+          )}
+        </form>
+      </Form>
+    );
 };
